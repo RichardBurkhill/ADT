@@ -10,13 +10,35 @@ package Stack_Pkg is
    type Stack is private;
 
    procedure Initialize(S : out Stack);
+   --% initializes S to be an empty stack
 
    procedure Push(S : in out Stack; X : in Integer);
+   --% pushes X onto S
+   --% global in out S;
+   --% global in X;
+   --% pre not Is_Full(S);
+   --% post not Is_Empty(S) and
+   --%      S.Top = S~.Top + 1 and
+   --%      S.Data(S.Top) = X;
 
    procedure Pop(S : in out Stack; X : out Integer);
+   --% pops the top element from S into X
+   --% global in out S;
+   --% global out X;
+   --% pre not Is_Empty(S);
+   --% post not Is_Full(S) and
+   --%      S.Top = S~.Top - 1 and
+   --%      X = S~.Data(S~.Top);
 
    function Is_Empty(S : Stack) return Boolean;
+   --% returns true if S is empty, false otherwise
+   --% global in S;
+   --% post return = (S.Top = 0);
+
    function Is_Full(S : Stack) return Boolean;
+   --% returns true if S is full, false otherwise
+   --% global in S;
+   --% post return = (S.Top = Max_Size);
 
 private
    type Stack is record
@@ -24,4 +46,3 @@ private
       Top  : Stack_Index := 0;
    end record;
 end Stack_Pkg;
-
